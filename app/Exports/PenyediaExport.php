@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 class PenyediaExport implements FromCollection, WithHeadings, WithMapping
 {
+    private $no = 1;
     public function collection()
     {
         $query = SirupPenyedia::query();
@@ -33,6 +34,7 @@ class PenyediaExport implements FromCollection, WithHeadings, WithMapping
     public function map($row): array
     {
         return [
+            $this->no++,
             $row->nama_satker,
             $row->nama_paket,
             $row->kd_rup,
@@ -46,6 +48,7 @@ class PenyediaExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
+            'No',
             'OPD',
             'Nama Paket',
             'ID RUP',
