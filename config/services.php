@@ -35,10 +35,4 @@ return [
         ],
     ],
 
-    'sirup' => [
-    'penyedia' => env('API_SIRUP_PENYEDIA'),
-    'swakelola' => env('API_SIRUP_SWAKELOLA'),
-    'satker' => env('API_SIRUP_MASTER_SATKER'),
-],
-
 ];

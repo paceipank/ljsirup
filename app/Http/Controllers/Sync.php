@@ -15,7 +15,7 @@ class Sync extends Controller
     {
         $kd_klpd = "D349";
         $tahun = $request->tahun ?? now()->year;
-        $url = config('services.sirup.penyedia') . $tahun . ':' . $kd_klpd;
+        $url = env('API_SIRUP_PENYEDIA') . $tahun . ':' . $kd_klpd;
         $response = Http::get($url);
         $data = $response->json();
 
@@ -81,14 +81,13 @@ class Sync extends Controller
         });
 
         return redirect()->back()->with('success', 'Sinkronisasi Penyedia berhasil!');
-
     }
 
     public function syncswakelola(Request $request)
     {
         $kd_klpd = "D349";
         $tahun = $request->tahun ?? now()->year;
-        $url = config('services.sirup.swakelola') . $tahun . ':' . $kd_klpd;
+        $url = env('API_SIRUP_SWAKELOLA') . $tahun . ':' . $kd_klpd;
         $response = Http::get($url);
         $data = $response->json();
 
@@ -134,16 +133,16 @@ class Sync extends Controller
         });
 
         return redirect()->back()->with('success', 'Sinkronisasi Swakelola berhasil!');
-
     }
 
     public function syncsatker(Request $request)
     {
         $kd_klpd = "D349";
         $tahun = $request->tahun ?? now()->year;
-        $url = config('services.sirup.satker') . $kd_klpd . ':' . $tahun;
+        $url = env('API_SIRUP_MASTER_SATKER') . $kd_klpd . ':' . $tahun;
         $response = Http::get($url);
         $data = $response->json();
+
         $batchSize = 100;
 
         DB::transaction(function () use ($data, $batchSize) {
@@ -173,6 +172,5 @@ class Sync extends Controller
         });
 
         return redirect()->back()->with('success', 'Sinkronisasi Satker Berhasil!');
-
     }
 }
