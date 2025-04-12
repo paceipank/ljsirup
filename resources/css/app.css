@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark-disabled, .dark-disabled *));
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source "../**/*.blade.php";
+@source "../**/*.js";
+@source "../**/*.vue";
+
+@source "../views";
+
+@theme {
+    --font-sans: 'InterVariable', 'sans-serif';
+}
