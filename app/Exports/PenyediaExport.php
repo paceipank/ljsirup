@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Exports;
 
 use App\Models\SirupPenyedia;
@@ -9,8 +11,23 @@ class PenyediaExport implements FromCollection, WithHeadings, WithMapping
 {
     public function collection()
     {
-        // Filter data jika perlu
-        return SirupPenyedia::all();
+        $query = SirupPenyedia::query();
+        if (request()->filled('tahun')) {
+            $query->where('tahun_anggaran', request()->tahun);
+        }
+
+        if (request()->filled('opd')) {
+            $query->where('nama_satker', 'like', '%' . request()->opd . '%');
+        }
+
+        if (request()->filled('search')) {
+            $query->where(function ($q) {
+                $q->where('nama_paket', 'like', '%' . request()->search . '%')
+                    ->orWhere('kd_rup', 'like', '%' . request()->search . '%');
+            });
+        }
+
+        return $query->get();
     }
 
     public function map($row): array

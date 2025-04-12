@@ -27,7 +27,7 @@
                     <form action="{{ route('penyedia') }}" method="GET" class="flex gap-4 items-center">
                         <div>
                             <label for="tahun" class="sr-only">Tahun</label>
-                            <select name="tahun" id="tahun" class="px-4 py-2 border rounded-lg">
+                            <select name="tahun" id="tahun" class="px-4 py-2 border border-gray-200 shadow rounded-lg bg-white">
                                 <option value="">Pilih Tahun</option>
                                 @foreach ($tahun_options as $tahun)
                                     <option value="{{ $tahun->tahun_anggaran }}"
@@ -40,7 +40,7 @@
 
                         <div>
                             <label for="opd" class="sr-only">OPD</label>
-                            <select name="opd" id="opd" class="px-4 py-2 border rounded-lg">
+                            <select name="opd" id="opd" class="px-4 py-2 border border-gray-200 shadow rounded-lg bg-white">
                                 <option value="">Pilih OPD</option>
                                 @foreach ($opd_options as $opd)
                                     <option value="{{ $opd->nama_satker }}"
@@ -52,7 +52,7 @@
                         </div>
 
                         <div>
-                            <input type="text" name="search" id="search" class="px-4 py-2 border rounded-lg"
+                            <input type="text" name="search" id="search" class="px-4 py-2 border border-gray-200 shadow rounded-lg bg-white"
                                 placeholder="Cari Nama Paket atau ID RUP" value="{{ request('search') }}">
                         </div>
 
